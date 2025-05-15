@@ -1,0 +1,89 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX 100
+
+typedef struct Node {
+    int vertex;
+    struct Node* next;
+} Node;
+
+Node* createNode(int v) {
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    newNode->vertex = v;
+    newNode->next = NULL;
+    return newNode;
+}
+
+void addEdge(Node* adj[], int u, int v) {
+    Node* newNode = createNode(v);
+    newNode->next = adj[u];
+    adj[u] = newNode;
+}
+
+void dfs(int v, int visited[], Node* adj[], int stack[], int* top) {
+    visited[v] = 1;
+    Node* temp = adj[v];
+    while (temp) {
+        int adjVertex = temp->vertex;
+        if (!visited[adjVertex]) {
+            dfs(adjVertex, visited, adj, stack, top);
+        }
+        temp = temp->next;
+    }
+    stack[(*top)++] = v;
+}
+
+void topologicalSort(Node* adj[], int V) {
+    int visited[V];
+    int stack[V];
+    int top = 0;
+
+    for (int i = 0; i < V; i++)
+        visited[i] = 0;
+
+    for (int i = 0; i < V; i++) {
+        if (!visited[i])
+            dfs(i, visited, adj, stack, &top);
+    }
+
+    printf("Topological Sort:\n");
+    for (int i = top - 1; i >= 0; i--) {
+        printf("%d ", stack[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int V, E;
+    printf("Enter number of vertices: ");
+    scanf("%d", &V);
+
+    Node* adj[V];
+    for (int i = 0; i < V; i++)
+        adj[i] = NULL;
+
+    printf("Enter number of edges: ");
+    scanf("%d", &E);
+
+    printf("Enter edges (u v) directed from u to v:\n");
+    for (int i = 0; i < E; i++) {
+        int u, v;
+        scanf("%d %d", &u, &v);
+        addEdge(adj, u, v);
+    }
+
+    topologicalSort(adj, V);
+
+    // Free allocated memory (optional)
+    for (int i = 0; i < V; i++) {
+        Node* temp = adj[i];
+        while (temp) {
+            Node* toFree = temp;
+            temp = temp->next;
+            free(toFree);
+        }
+    }
+
+    return 0;
+}
