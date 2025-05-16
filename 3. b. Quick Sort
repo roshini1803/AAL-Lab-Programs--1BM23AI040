@@ -50,3 +50,13 @@ int main() {
 
     return 0;
 }
+
+Output:
+Enter number of elements: 5
+Enter 5 elements:
+2 4 9 7 5
+Sorted array:
+2 4 5 7 9 
+
+
+=== Code Execution Successful ===
