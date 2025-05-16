@@ -44,3 +44,27 @@ int main() {
 
     return 0;
 }
+
+Output:
+Enter number of cities: 4
+Enter the cost adjacency matrix (use 99999 for no path):
+3
+4
+5
+6
+7
+9
+12
+45
+65
+19
+34
+68
+23
+27
+64
+54
+Minimum cost to visit all cities: 92
+
+
+=== Code Execution Successful ===
