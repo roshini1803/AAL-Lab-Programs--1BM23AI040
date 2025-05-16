@@ -37,3 +37,11 @@ int main() {
 
     return 0;
 }
+
+Output:
+Enter the text: roshini
+Enter the pattern to search: shi
+Pattern found at index 2
+
+
+=== Code Execution Successful ===
