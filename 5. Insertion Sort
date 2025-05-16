@@ -33,3 +33,17 @@ int main() {
 
     return 0;
 }
+
+Output:
+Enter number of elements: 5
+Enter 5 elements:
+23
+11
+4
+8
+9
+Sorted array:
+4 8 9 11 23 
+
+
+=== Code Execution Successful ===
